@@ -26,7 +26,9 @@ describe('greet command', () => {
     const result = runCli([]);
 
     expect(result.exitCode).toBe(0);
-    expect(result.stdout).toContain('bun-cli greet <name> [--lang <en|ja>]');
+    expect(result.stdout).toContain(
+      'bun-cli <greet|g> <name> [--lang <en|ja>]',
+    );
   });
 
   test('greets in English by default', () => {
@@ -42,6 +44,14 @@ describe('greet command', () => {
 
     expect(result.exitCode).toBe(0);
     expect(result.stdout).toBe('こんにちは、Hanakoさん！');
+    expect(result.stderr).toBe('');
+  });
+
+  test('supports g alias for greet command', () => {
+    const result = runCli(['g', 'Alice']);
+
+    expect(result.exitCode).toBe(0);
+    expect(result.stdout).toBe('Hello, Alice!');
     expect(result.stderr).toBe('');
   });
 

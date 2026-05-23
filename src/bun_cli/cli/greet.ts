@@ -5,10 +5,10 @@ import { CommandLineError } from '../errors';
 
 const usage = [
   'Usage:',
-  `  ${packageMetadata.name} greet <name> [--lang <en|ja>]`,
+  `  ${packageMetadata.name} <greet|g> <name> [--lang <en|ja>]`,
   '',
   'Commands:',
-  '  greet   Print a greeting for one person.',
+  '  greet, g   Print a greeting for one person.',
   '',
   'Options:',
   '  --lang <en|ja>  Greeting language. Defaults to en.',
@@ -80,7 +80,7 @@ function parseCommandLine(args: readonly string[]): ParsedCommand {
 
   const [command, name, ...rest] = positionals;
 
-  if (command !== 'greet') {
+  if (command !== 'greet' && command !== 'g') {
     throw new CommandLineError(`Unknown command '${command}'.`);
   }
 
