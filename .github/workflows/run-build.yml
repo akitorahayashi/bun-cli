@@ -1,0 +1,26 @@
+# Build Workflow
+#
+# Compiles the Bun CLI into a standalone executable.
+
+name: Run Build
+
+on:
+  workflow_call:
+
+permissions:
+  contents: read
+
+jobs:
+  run-build:
+    name: Run Build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v6
+
+      - name: Setup Development Environment
+        uses: ./.github/actions/setup
+
+      - name: Build Bun CLI
+        run: bun run build

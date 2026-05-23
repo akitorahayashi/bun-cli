@@ -1,9 +1,11 @@
-# bun-spt
+# bun-cli
 
-`bun-spt` is a Bun and TypeScript template repository for scripts.
+`bun-cli` is a Bun and TypeScript template repository for dependency-free
+command-line tools.
 
-The repository ships a minimal CLI entrypoint with repository-owned checks,
-tests, and GitHub Actions validation.
+The repository demonstrates a minimal CLI with one command,
+`greet <name> [--lang <en|ja>]`, plus repository-owned checks, tests, and a
+compiled binary build.
 
 ## Setup
 
@@ -11,10 +13,19 @@ tests, and GitHub Actions validation.
 bun install
 ```
 
+## Usage
+
+```bash
+bun run exec -- greet Alice
+bun run exec -- greet Hanako --lang ja
+bun run exec -- --version
+```
+
 ## Task Surface
 
 ```bash
-bun run start
+bun run exec -- greet Alice
+bun run build
 bun run check
 bun run test
 ```
@@ -23,7 +34,11 @@ bun run test
 
 ## Runtime
 
-The script entrypoint is `src/index.ts`.
-Tests live under `tests/`.
-GitHub Actions validation runs the same `check` and `test` tasks as local
-development.
+The CLI entrypoint is `src/bun_cli/main.ts`.
+The command-line boundary lives under `src/bun_cli/cli/`.
+The application layer lives under `src/bun_cli/app/`.
+The greeting feature owner lives under `src/bun_cli/greetings/`.
+Tests live under `tests/cli/`, `tests/app/`, and `tests/greetings/`.
+`bun run build` compiles a standalone executable to `dist/bun-cli`.
+Intermediate build files are isolated under `./.tmp/` and cleaned after the
+build completes.

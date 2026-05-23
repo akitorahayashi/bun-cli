@@ -1,13 +1,19 @@
 {
-  "name": "bun-spt",
+  "name": "bun-cli",
   "version": "0.1.0",
-  "description": "Bun and TypeScript template repository for scripts",
+  "description": "Bun and TypeScript template repository",
   "packageManager": "bun@1.3.14",
-  "module": "src/index.ts",
+  "module": "src/bun_cli/main.ts",
   "type": "module",
   "private": true,
+  "bin": {
+    "bun-cli": "./src/bun_cli/main.ts"
+  },
   "scripts": {
-    "start": "bun src/index.ts",
+    "exec": "bun run src/bun_cli/main.ts --",
+    "prebuild": "rm -rf .tmp/build && mkdir -p .tmp/build dist",
+    "build": "cd .tmp/build && bun build ../../src/bun_cli/main.ts --compile --outfile ../../dist/bun-cli",
+    "postbuild": "rm -rf .tmp/build",
     "test": "bun test",
     "typecheck": "tsc --noEmit",
     "check": "biome check . && bun run typecheck",
