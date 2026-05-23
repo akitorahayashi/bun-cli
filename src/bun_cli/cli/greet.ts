@@ -5,7 +5,7 @@ import { CommandLineError } from '../errors';
 
 const usage = [
   'Usage:',
-  '  bun-cli greet <name> [--lang <en|ja>]',
+  `  ${packageMetadata.name} greet <name> [--lang <en|ja>]`,
   '',
   'Commands:',
   '  greet   Print a greeting for one person.',
@@ -28,7 +28,7 @@ export async function runCommandLine(
     }
 
     if (parsed.type === 'version') {
-      writeOutput(`bun-cli ${packageMetadata.version}`);
+      writeOutput(`${packageMetadata.name} ${packageMetadata.version}`);
       return 0;
     }
 

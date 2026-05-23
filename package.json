@@ -11,9 +11,8 @@
   },
   "scripts": {
     "exec": "bun run src/bun_cli/main.ts --",
-    "prebuild": "rm -rf .tmp/build && mkdir -p .tmp/build dist",
-    "build": "cd .tmp/build && bun build ../../src/bun_cli/main.ts --compile --outfile ../../dist/bun-cli",
-    "postbuild": "rm -rf .tmp/build",
+    "prebuild": "mkdir -p dist",
+    "build": "bun build src/bun_cli/main.ts --compile --outfile dist/bun-cli && rm -f .*.bun-build",
     "test": "bun test",
     "typecheck": "tsc --noEmit",
     "check": "biome check . && bun run typecheck",
