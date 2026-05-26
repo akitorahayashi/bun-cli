@@ -16,15 +16,15 @@ bun install
 ## Usage
 
 ```bash
-bun run exec -- greet Alice
-bun run exec -- greet Hanako --lang ja
-bun run exec -- --version
+bun run bun-cli greet Alice
+bun run bun-cli greet Hanako --lang ja
+bun run bun-cli --version
 ```
 
 ## Task Surface
 
 ```bash
-bun run exec -- greet Alice
+bun run bun-cli greet Alice
 bun run build
 bun run check
 bun run test

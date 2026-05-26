@@ -9,7 +9,7 @@ Template repository for dependency-free Bun and TypeScript CLIs.
 
 - Use Bun commands only.
 - Install dependencies with `bun install`.
-- Run the CLI with `bun run exec -- greet <name>`.
+- Run the CLI with `bun run bun-cli greet <name>`.
 - Build the standalone binary with `bun run build`.
 - Run static validation with `bun run check`.
 - Run tests with `bun run test`.

@@ -21,7 +21,7 @@ The repository owns:
 
 The repository-owned tasks are:
 
-- `bun run exec -- greet <name>`
+- `bun run bun-cli greet <name>`
 - `bun run build`
 - `bun run fix`
 - `bun run check`
