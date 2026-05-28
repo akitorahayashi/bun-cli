@@ -38,11 +38,11 @@ describe('greet command', () => {
     expect(result.stdout).toContain('greet <name>');
   });
 
-  test('greets in English by default', () => {
+  test('greets in Japanese by default', () => {
     const result = runCli(['greet', 'Alice']);
 
     expect(result.exitCode).toBe(0);
-    expect(result.stdout).toBe('Hello, Alice!');
+    expect(result.stdout).toBe('こんにちは、Aliceさん！');
     expect(result.stderr).toBe('');
   });
 
@@ -58,7 +58,7 @@ describe('greet command', () => {
     const result = runCli(['g', 'Alice']);
 
     expect(result.exitCode).toBe(0);
-    expect(result.stdout).toBe('Hello, Alice!');
+    expect(result.stdout).toBe('こんにちは、Aliceさん！');
     expect(result.stderr).toBe('');
   });
 

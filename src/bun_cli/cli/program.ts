@@ -4,25 +4,24 @@ import { CommandLineError } from '../errors';
 import { registerGreetCommand } from './greet';
 
 export async function runCommandLine(
-  argv: readonly string[] = Bun.argv,
+  args: readonly string[] = Bun.argv.slice(2),
 ): Promise<number> {
   const program = createProgram();
-  const userArgs = argv.slice(2);
 
-  if (userArgs.length === 0) {
+  if (args.length === 0) {
     program.outputHelp();
     return 0;
   }
 
-  if (isVersionRequest(userArgs)) {
+  if (isVersionRequest(args)) {
     writeOutput(`${packageMetadata.name} ${packageMetadata.version}`);
     return 0;
   }
 
   try {
-    rejectUnsupportedTopLevelOptions(userArgs);
+    rejectUnsupportedTopLevelOptions(args);
 
-    program.parse([...argv], { run: false });
+    program.parse(['bun', packageMetadata.name, ...args], { run: false });
 
     if (program.options.help) {
       return 0;

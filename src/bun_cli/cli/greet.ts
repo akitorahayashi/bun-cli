@@ -1,6 +1,9 @@
 import type { CAC } from 'cac';
 import { greet } from '../app/greet';
-import { greetingLanguages } from '../greetings/language';
+import {
+  defaultGreetingLanguage,
+  greetingLanguages,
+} from '../greetings/language';
 
 interface GreetOptions {
   lang?: string;
@@ -14,7 +17,7 @@ export function registerGreetCommand(program: CAC): void {
     .alias('g')
     .option(
       `--lang <${languageValues}>`,
-      `Greeting language. Defaults to ${greetingLanguages[0]}.`,
+      `Greeting language. Defaults to ${defaultGreetingLanguage}.`,
     )
     .action((name: string, options: GreetOptions) => {
       const result = greet({
