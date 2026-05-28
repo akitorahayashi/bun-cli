@@ -2,8 +2,7 @@
 
 ## Scope
 
-`bun-cli` is a Bun and TypeScript template repository for dependency-free CLI
-projects.
+`bun-cli` is a Bun and TypeScript template repository for CLI projects.
 
 The repository owns:
 
