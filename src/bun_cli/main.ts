@@ -1,6 +1,6 @@
 #!/usr/bin/env bun
 
-import { runCommandLine } from './cli/greet';
+import { runCommandLine } from './cli/program';
 
 if (import.meta.main) {
   runCommandLine()

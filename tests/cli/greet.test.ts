@@ -26,16 +26,23 @@ describe('greet command', () => {
     const result = runCli([]);
 
     expect(result.exitCode).toBe(0);
-    expect(result.stdout).toContain(
-      'bun-cli <greet|g> <name> [--lang <en|ja>]',
-    );
+    expect(result.stdout).toContain('Usage:');
+    expect(result.stdout).toContain('greet <name>');
   });
 
-  test('greets in English by default', () => {
+  test('prints help when requested', () => {
+    const result = runCli(['--help']);
+
+    expect(result.exitCode).toBe(0);
+    expect(result.stdout).toContain('Usage:');
+    expect(result.stdout).toContain('greet <name>');
+  });
+
+  test('greets in Japanese by default', () => {
     const result = runCli(['greet', 'Alice']);
 
     expect(result.exitCode).toBe(0);
-    expect(result.stdout).toBe('Hello, Alice!');
+    expect(result.stdout).toBe('こんにちは、Aliceさん！');
     expect(result.stderr).toBe('');
   });
 
@@ -51,7 +58,7 @@ describe('greet command', () => {
     const result = runCli(['g', 'Alice']);
 
     expect(result.exitCode).toBe(0);
-    expect(result.stdout).toBe('Hello, Alice!');
+    expect(result.stdout).toBe('こんにちは、Aliceさん！');
     expect(result.stderr).toBe('');
   });
 
@@ -60,6 +67,30 @@ describe('greet command', () => {
 
     expect(result.exitCode).toBe(0);
     expect(result.stdout).toBe('bun-cli 0.1.0');
+  });
+
+  test('fails when a required name is missing', () => {
+    const result = runCli(['greet']);
+
+    expect(result.exitCode).toBe(1);
+    expect(result.stderr).toContain('missing required args');
+    expect(result.stdout).toContain('Usage:');
+  });
+
+  test('fails for unknown options', () => {
+    const result = runCli(['greet', 'Alice', '--lan', 'ja']);
+
+    expect(result.exitCode).toBe(1);
+    expect(result.stderr).toContain('Unknown option');
+    expect(result.stdout).toContain('Usage:');
+  });
+
+  test('fails for unexpected positional arguments', () => {
+    const result = runCli(['greet', 'Alice', 'Bob']);
+
+    expect(result.exitCode).toBe(1);
+    expect(result.stderr).toContain('Unexpected positional arguments: Bob.');
+    expect(result.stdout).toContain('Usage:');
   });
 
   test('fails for unsupported languages', () => {

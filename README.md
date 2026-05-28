@@ -1,11 +1,10 @@
 # bun-cli
 
-`bun-cli` is a Bun and TypeScript template repository for dependency-free
-command-line tools.
+`bun-cli` is a Bun and TypeScript template repository for command-line tools.
 
-The repository demonstrates a minimal CLI with one command,
-`greet <name> [--lang <en|ja>]`, plus repository-owned checks, tests, and a
-compiled binary build.
+The repository demonstrates a small CLI with a framework-backed command
+boundary, one command, `greet <name> [--lang <en|ja>]`, repository-owned checks,
+tests, and a compiled binary build.
 
 ## Setup
 
@@ -34,8 +33,10 @@ bun run test
 
 ## Runtime
 
+The package is ESM via `type: "module"` in `package.json`.
 The CLI entrypoint is `src/bun_cli/main.ts`.
-The command-line boundary lives under `src/bun_cli/cli/`.
+The command-line boundary lives under `src/bun_cli/cli/` and uses `cac` for
+command declaration, help, option parsing, and required argument validation.
 The application layer lives under `src/bun_cli/app/`.
 The greeting feature owner lives under `src/bun_cli/greetings/`.
 Tests live under `tests/cli/`, `tests/app/`, and `tests/greetings/`.

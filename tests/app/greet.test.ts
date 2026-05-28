@@ -9,10 +9,10 @@ describe('greet application', () => {
     });
   });
 
-  test('defaults language to English', () => {
+  test('defaults language to Japanese', () => {
     expect(greet({ name: 'Alice' })).toEqual({
-      lang: 'en',
-      message: 'Hello, Alice!',
+      lang: 'ja',
+      message: 'こんにちは、Aliceさん！',
     });
   });
 });
