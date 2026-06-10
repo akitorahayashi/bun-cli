@@ -1,6 +1,6 @@
 # Build Workflow
 #
-# Compiles the Bun CLI into a standalone executable.
+# Compiles the Bun CLI into standalone executables.
 
 name: Run Build
 
@@ -11,12 +11,12 @@ on:
         required: false
         type: string
 
-permissions:
-  contents: read
-
 jobs:
-  run-build:
-    name: Run Build
+  build:
+    name: Build
+    if: inputs.release_id == ''
+    permissions:
+      contents: read
     runs-on: ubuntu-latest
 
     steps:
@@ -29,18 +29,41 @@ jobs:
       - name: Build Bun CLI
         run: bun run build
 
-      - name: Prepare Release Asset
-        if: inputs.release_id != ''
-        run: |
-          cp dist/bun-cli bun-cli-linux-x64
-          chmod +x bun-cli-linux-x64
+  build-release:
+    name: Build ${{ matrix.target }}
+    if: inputs.release_id != ''
+    permissions:
+      contents: write
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - target: bun-linux-x64
+            artifact: bun-cli-linux-x64
+          - target: bun-linux-arm64
+            artifact: bun-cli-linux-arm64
+          - target: bun-darwin-x64
+            artifact: bun-cli-darwin-x64
+          - target: bun-darwin-arm64
+            artifact: bun-cli-darwin-arm64
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v6
+
+      - name: Setup Development Environment
+        uses: ./.github/actions/setup
+
+      - name: Build Bun CLI
+        run: bun build src/bun_cli/main.ts --compile --target=${{ matrix.target }} --outfile=${{ matrix.artifact }}
 
       - name: Upload Release Asset
-        if: inputs.release_id != ''
         uses: akitorahayashi/gh-release@v1
         with:
           mode: upload
           token: ${{ github.token }}
           release_id: ${{ inputs.release_id }}
-          files: bun-cli-linux-x64
+          files: ${{ matrix.artifact }}
           overwrite: true
