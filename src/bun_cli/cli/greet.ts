@@ -1,4 +1,4 @@
-import type { CAC } from 'cac';
+import type { CAC } from 'cli-kit';
 import { greet } from '../app/greet';
 import {
   defaultGreetingLanguage,

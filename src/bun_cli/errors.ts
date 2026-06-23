@@ -1,5 +1,5 @@
-export class AppError extends Error {}
+import { AppError } from 'cli-kit';
 
-export class CommandLineError extends AppError {}
+export { AppError, CommandLineError } from 'cli-kit';
 
 export class GreetingValidationError extends AppError {}
