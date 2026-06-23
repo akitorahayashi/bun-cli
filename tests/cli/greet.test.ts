@@ -26,7 +26,7 @@ describe('greet command', () => {
     const result = runCli([]);
 
     expect(result.exitCode).toBe(0);
-    expect(result.stdout).toContain('Usage:');
+    expect(result.stdout).toContain('Usage');
     expect(result.stdout).toContain('greet <name>');
   });
 
@@ -34,8 +34,17 @@ describe('greet command', () => {
     const result = runCli(['--help']);
 
     expect(result.exitCode).toBe(0);
-    expect(result.stdout).toContain('Usage:');
+    expect(result.stdout).toContain('Usage');
     expect(result.stdout).toContain('greet <name>');
+  });
+
+  test('prints command-specific help for greet --help', () => {
+    const result = runCli(['greet', '--help']);
+
+    expect(result.exitCode).toBe(0);
+    expect(result.stdout).toContain('bun-cli greet <name>');
+    expect(result.stdout).toContain('--lang');
+    expect(result.stdout).toContain('-h, --help');
   });
 
   test('greets in Japanese by default', () => {
@@ -74,7 +83,7 @@ describe('greet command', () => {
 
     expect(result.exitCode).toBe(1);
     expect(result.stderr).toContain('missing required args');
-    expect(result.stdout).toContain('Usage:');
+    expect(result.stdout).toContain('greet <name>');
   });
 
   test('fails for unknown options', () => {
@@ -82,7 +91,7 @@ describe('greet command', () => {
 
     expect(result.exitCode).toBe(1);
     expect(result.stderr).toContain('Unknown option');
-    expect(result.stdout).toContain('Usage:');
+    expect(result.stdout).toContain('greet <name>');
   });
 
   test('fails for unexpected positional arguments', () => {
@@ -90,7 +99,7 @@ describe('greet command', () => {
 
     expect(result.exitCode).toBe(1);
     expect(result.stderr).toContain('Unexpected positional arguments: Bob.');
-    expect(result.stdout).toContain('Usage:');
+    expect(result.stdout).toContain('greet <name>');
   });
 
   test('fails for unsupported languages', () => {
@@ -98,6 +107,6 @@ describe('greet command', () => {
 
     expect(result.exitCode).toBe(1);
     expect(result.stderr).toContain("Unsupported language 'fr'.");
-    expect(result.stdout).toContain('Usage:');
+    expect(result.stdout).toContain('greet <name>');
   });
 });

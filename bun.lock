@@ -5,7 +5,7 @@
     "": {
       "name": "bun-cli",
       "dependencies": {
-        "cac": "6.7.14",
+        "cli-kit": "github:akitorahayashi/cli-kit",
       },
       "devDependencies": {
         "@biomejs/biome": "2.4.15",
@@ -41,6 +41,8 @@
     "bun-types": ["bun-types@1.3.14", "", { "dependencies": { "@types/node": "*" } }, "sha512-4N0ig0fEomHt5R0KCFWjovxow98rIoRwKolrYdCcknNwMekCXRnWEUvgu5soYV8QXtVsrUD8B95MBOZGPvr6KQ=="],
 
     "cac": ["cac@6.7.14", "", {}, "sha512-b6Ilus+c3RrdDk+JhLKUAQfzzgLEPy6wcXqS7f/xe1EETvsDP6GORG7SFuOs6cID5YkqchW/LXZbX5bc8j7ZcQ=="],
+
+    "cli-kit": ["cli-kit@github:akitorahayashi/cli-kit#4db46b3", { "dependencies": { "cac": "6.7.14" } }, "akitorahayashi-cli-kit-4db46b3", "sha512-EilRG4MmCvikqaawrRsblFpRUl4NVZd77uMftlxwxYyZBKFmqHahbW/Lp7w3DHzUbC5jG1pn9OXcUH8Odycs/g=="],
 
     "husky": ["husky@9.1.7", "", { "bin": { "husky": "bin.js" } }, "sha512-5gs5ytaNjBrh5Ow3zrvdUUY+0VxIuWVL4i9irt6friV+BqdCfmV11CQTWMiBYWHbXhco+J1kHfTOUkePhCDvMA=="],
 
