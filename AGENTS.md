@@ -44,7 +44,7 @@ Domain modules import from `errors.ts`, never from clipanion directly.
 
 ### Output
 
-Commands write output via `this.context.stdout.write()`. clipanion routes errors and usage to stdout; `stderr` is not used for user-facing output.
+Commands write output via `this.context.stdout.write()`. clipanion routes `UsageError` and help text to stdout; unhandled `Error` instances (including `AppError`) are routed to stderr.
 
 ## Development Commands
 

@@ -20,7 +20,6 @@
     "prepare": "husky"
   },
   "dependencies": {
-    "@oclif/core": "^4.11.11",
     "clipanion": "^4.0.0-rc.4"
   },
   "devDependencies": {
