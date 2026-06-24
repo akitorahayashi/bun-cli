@@ -1,5 +1,5 @@
 import { type CAC, runCli } from 'cli-kit';
-import packageMetadata from '../../../package.json';
+import packageMetadata from '../../package.json';
 import { registerGreetCommand } from './greet';
 
 export function runCommandLine(

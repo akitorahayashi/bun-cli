@@ -1,5 +1,5 @@
 import { describe, expect, test } from 'bun:test';
-import { greet } from '../../src/bun_cli/app/greet';
+import { greet } from '../../src/app/greet';
 
 describe('greet application', () => {
   test('returns the selected language and message', () => {

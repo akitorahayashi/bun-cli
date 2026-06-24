@@ -34,11 +34,11 @@ bun run test
 ## Runtime
 
 The package is ESM via `type: "module"` in `package.json`.
-The CLI entrypoint is `src/bun_cli/main.ts`.
-The command-line boundary lives under `src/bun_cli/cli/` and uses `cac` for
+The CLI entrypoint is `src/main.ts`.
+The command-line boundary lives under `src/cli/` and uses `cac` for
 command declaration, help, option parsing, and required argument validation.
-The application layer lives under `src/bun_cli/app/`.
-The greeting feature owner lives under `src/bun_cli/greetings/`.
+The application layer lives under `src/app/`.
+The greeting feature owner lives under `src/greetings/`.
 Tests live under `tests/cli/`, `tests/app/`, and `tests/greetings/`.
 `bun run build` compiles a standalone executable to `dist/bun-cli`.
 Intermediate build files are isolated under `./.tmp/` and cleaned after the
