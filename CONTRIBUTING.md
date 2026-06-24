@@ -6,10 +6,10 @@
 
 The repository owns:
 
-- the CLI entrypoint in `src/bun_cli/main.ts`
-- the CLI boundary in `src/bun_cli/cli/`
-- the application layer in `src/bun_cli/app/`
-- the feature owner in `src/bun_cli/greetings/`
+- the CLI entrypoint in `src/main.ts`
+- the CLI boundary in `src/cli/`
+- the application layer in `src/app/`
+- the feature owner in `src/greetings/`
 - the repository-owned tests in `tests/`
 - the validation surface in `package.json`
 - the GitHub Actions automation in `.github/workflows/`
