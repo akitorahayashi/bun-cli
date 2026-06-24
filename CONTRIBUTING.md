@@ -2,37 +2,20 @@
 
 ## Scope
 
-`bun-cli` is a Bun and TypeScript template repository for CLI projects.
+This repository owns:
 
-The repository owns:
+- `src/` — CLI entry point, commands, application logic, domain modules
+- `tests/` — CLI integration and unit tests
+- `.github/workflows/` — CI automation
 
-- the CLI entrypoint in `src/main.ts`
-- the CLI boundary in `src/cli/`
-- the application layer in `src/app/`
-- the feature owner in `src/greetings/`
-- the repository-owned tests in `tests/`
-- the validation surface in `package.json`
-- the GitHub Actions automation in `.github/workflows/`
+## Workflow
 
-## Local Verification
+1. Run `bun run fix` before committing.
+2. Run `bun run check` to verify lint and types.
+3. Run `bun test` to verify behavior.
 
-`bun` is the canonical local task surface.
-
-The repository-owned tasks are:
-
-- `bun run bun-cli greet <name>`
-- `bun run build`
-- `bun run fix`
-- `bun run check`
-- `bun run test`
-
-`bun run fix` applies Biome formatting and safe lint fixes.
-`bun run build` compiles a standalone executable with `bun build --compile`
-without leaving intermediate files in the repository root.
-`bun run check` runs Biome validation and TypeScript typechecking.
-`bun run test` runs the Bun test suite.
+See [AGENTS.md](AGENTS.md) for development commands, architecture, and implementation rules.
 
 ## Runtime Version
 
-The Bun version is fixed by the `packageManager` field in `package.json`.
-Local development and GitHub Actions read the same repository-owned version.
+The Bun version is fixed by the `packageManager` field in `package.json`. Local development and CI use the same version.

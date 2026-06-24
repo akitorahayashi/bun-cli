@@ -1,30 +1,17 @@
-import type { CAC } from 'cli-kit';
+import { Command, Option } from 'clipanion';
 import { greet } from '../app/greet';
-import {
-  defaultGreetingLanguage,
-  greetingLanguages,
-} from '../greetings/language';
 
-interface GreetOptions {
-  lang?: string;
-}
+export class GreetCommand extends Command {
+  static override paths = [['greet'], ['g']];
+  static override usage = Command.Usage({
+    description: 'Print a greeting for one person.',
+  });
 
-export function registerGreetCommand(program: CAC): void {
-  const languageValues = greetingLanguages.join('|');
+  name = Option.String({ required: true });
+  lang = Option.String('--lang');
 
-  program
-    .command('greet <name>', 'Print a greeting for one person.')
-    .alias('g')
-    .option(
-      `--lang <${languageValues}>`,
-      `Greeting language. Defaults to ${defaultGreetingLanguage}.`,
-    )
-    .action((name: string, options: GreetOptions) => {
-      const result = greet({
-        lang: options.lang,
-        name,
-      });
-
-      process.stdout.write(`${result.message}\n`);
-    });
+  async execute(): Promise<void> {
+    const result = greet({ name: this.name, lang: this.lang });
+    this.context.stdout.write(`${result.message}\n`);
+  }
 }

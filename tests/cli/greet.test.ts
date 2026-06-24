@@ -26,25 +26,25 @@ describe('greet command', () => {
     const result = runCli([]);
 
     expect(result.exitCode).toBe(0);
-    expect(result.stdout).toContain('Usage');
-    expect(result.stdout).toContain('greet <name>');
+    expect(result.stdout).toContain('bun-cli <command>');
+    expect(result.stdout).toContain('greet');
   });
 
   test('prints help when requested', () => {
     const result = runCli(['--help']);
 
     expect(result.exitCode).toBe(0);
-    expect(result.stdout).toContain('Usage');
-    expect(result.stdout).toContain('greet <name>');
+    expect(result.stdout).toContain('bun-cli <command>');
+    expect(result.stdout).toContain('greet');
   });
 
   test('prints command-specific help for greet --help', () => {
     const result = runCli(['greet', '--help']);
 
     expect(result.exitCode).toBe(0);
-    expect(result.stdout).toContain('bun-cli greet <name>');
+    expect(result.stdout).toContain('bun-cli greet');
     expect(result.stdout).toContain('--lang');
-    expect(result.stdout).toContain('-h, --help');
+    expect(result.stdout).toContain('<name>');
   });
 
   test('greets in Japanese by default', () => {
@@ -75,38 +75,38 @@ describe('greet command', () => {
     const result = runCli(['--version']);
 
     expect(result.exitCode).toBe(0);
-    expect(result.stdout).toBe('bun-cli 0.1.0');
+    expect(result.stdout).toBe('0.1.0');
   });
 
   test('fails when a required name is missing', () => {
     const result = runCli(['greet']);
 
     expect(result.exitCode).toBe(1);
-    expect(result.stderr).toContain('missing required args');
-    expect(result.stdout).toContain('greet <name>');
+    expect(result.stdout).toContain('Not enough positional arguments');
+    expect(result.stdout).toContain('bun-cli greet');
   });
 
   test('fails for unknown options', () => {
     const result = runCli(['greet', 'Alice', '--lan', 'ja']);
 
     expect(result.exitCode).toBe(1);
-    expect(result.stderr).toContain('Unknown option');
-    expect(result.stdout).toContain('greet <name>');
+    expect(result.stdout).toContain('Unsupported option name');
+    expect(result.stdout).toContain('bun-cli greet');
   });
 
   test('fails for unexpected positional arguments', () => {
     const result = runCli(['greet', 'Alice', 'Bob']);
 
     expect(result.exitCode).toBe(1);
-    expect(result.stderr).toContain('Unexpected positional arguments: Bob.');
-    expect(result.stdout).toContain('greet <name>');
+    expect(result.stdout).toContain('Extraneous positional argument');
+    expect(result.stdout).toContain('bun-cli greet');
   });
 
   test('fails for unsupported languages', () => {
     const result = runCli(['greet', 'Alice', '--lang', 'fr']);
 
     expect(result.exitCode).toBe(1);
-    expect(result.stderr).toContain("Unsupported language 'fr'.");
-    expect(result.stdout).toContain('greet <name>');
+    expect(result.stdout).toContain("Unsupported language 'fr'.");
+    expect(result.stdout).toContain('bun-cli greet');
   });
 });
