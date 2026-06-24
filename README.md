@@ -19,27 +19,3 @@ bun run bun-cli greet Alice
 bun run bun-cli greet Hanako --lang ja
 bun run bun-cli --version
 ```
-
-## Task Surface
-
-```bash
-bun run bun-cli greet Alice
-bun run build
-bun run check
-bun run test
-```
-
-`bun run fix` applies Biome formatting and safe lint fixes.
-
-## Runtime
-
-The package is ESM via `type: "module"` in `package.json`.
-The CLI entrypoint is `src/main.ts`.
-The command-line boundary lives under `src/cli/` and uses `cac` for
-command declaration, help, option parsing, and required argument validation.
-The application layer lives under `src/app/`.
-The greeting feature owner lives under `src/greetings/`.
-Tests live under `tests/cli/`, `tests/app/`, and `tests/greetings/`.
-`bun run build` compiles a standalone executable to `dist/bun-cli`.
-Intermediate build files are isolated under `./.tmp/` and cleaned after the
-build completes.
