@@ -4,7 +4,7 @@ import { greet } from '../app/greet';
 export class GreetCommand extends Command {
   static override paths = [['greet'], ['g']];
   static override usage = Command.Usage({
-    description: 'Print a greeting for one person.',
+    description: 'Print a greeting for one person. [aliases: g]',
   });
 
   name = Option.String({ required: true });
