@@ -33,8 +33,6 @@ Each command is a class in `src/cli/` that extends clipanion's `Command`. Declar
 - Fields via `Option.String()`, `Option.Boolean()`, `Option.Rest()`, etc.
 - `async execute()` — writes output via `this.context.stdout.write()`
 
-Human-facing command surfaces stay synchronized across `src/cli/*` `static paths` and `package.json` `scripts`. When a command path or alias is added, removed, or renamed, the matching `bun <script>` and `bun run <script>` entry is updated in the same change unless Bun reserves that name.
-
 ### Errors
 
 `errors.ts` exports:
