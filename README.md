@@ -11,8 +11,8 @@ bun install
 ## Usage
 
 ```sh
-bun run bun-cli --help
-bun run bun-cli greet Alice
-bun run bun-cli greet Hanako --lang ja
-bun run bun-cli --version
+bun e --help
+bun e greet Alice
+bun e greet Hanako --lang ja
+bun e --version
 ```

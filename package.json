@@ -10,7 +10,7 @@
     "bun-cli": "./src/main.ts"
   },
   "scripts": {
-    "bun-cli": "bun src/main.ts",
+    "e": "bun src/main.ts",
     "prebuild": "mkdir -p dist",
     "build": "bun build src/main.ts --compile --outfile dist/bun-cli && rm -f .*.bun-build",
     "test": "bun test",
