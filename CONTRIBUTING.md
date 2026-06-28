@@ -6,9 +6,12 @@ This repository owns:
 
 - `src/` — CLI entry point, commands, application logic, domain modules, and colocated unit tests
 - `tests/` — CLI integration tests
+- `.github/workflows/` — CI automation
+
+## Testing Policy
+
 - Unit tests live next to source files under `src/` and test pure transformations.
 - Integration tests live under `tests/` and test filesystem, CLI, subprocess, or network behavior.
-- `.github/workflows/` — CI automation
 
 ## Workflow
 
