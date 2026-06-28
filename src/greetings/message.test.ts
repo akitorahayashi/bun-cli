@@ -1,5 +1,5 @@
 import { describe, expect, test } from 'bun:test';
-import { composeGreetingMessage } from '../../src/greetings/message';
+import { composeGreetingMessage } from './message';
 
 describe('composeGreetingMessage', () => {
   test('creates an English greeting', () => {

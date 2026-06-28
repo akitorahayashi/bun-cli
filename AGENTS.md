@@ -10,11 +10,11 @@ src/
     <command>.ts       One Command class per subcommand
   app/
     <feature>.ts       Business logic, framework-independent
+    <feature>.test.ts  Colocated unit tests for business logic
   <domain>/            Domain modules (e.g. greetings/) owned by the feature
+    <file>.test.ts     Colocated unit tests for domain modules
 tests/
-  cli/                 CLI integration tests via Bun.spawnSync
-  app/                 Unit tests for business logic
-  <domain>/            Unit tests for domain modules
+  <command>.test.ts    CLI integration tests via Bun.spawnSync
 ```
 
 ## Architecture
@@ -58,7 +58,8 @@ bun run build    # Compile to dist/<bin> binary
 ## Development Guidelines
 
 - `bun run fix` before `bun run check`; never skip fix.
-- CLI tests spawn `bun src/main.ts` via `Bun.spawnSync` and assert on stdout/stderr/exitCode.
+- Unit tests live next to source files under `src/` and test pure transformations.
+- Integration tests live under `tests/` and test filesystem, CLI, subprocess, or network behavior.
 - Tests assert observable behavior only — not internal structure or wording of passing output.
 - Domain logic lives in `app/` and domain modules; commands are thin adapters.
 - `static override` is required on `paths` and `usage` (TypeScript strict override checking).
