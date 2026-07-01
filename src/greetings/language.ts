@@ -1,4 +1,4 @@
-import { CommandLineError } from '../errors';
+import { UnsupportedGreetingLanguageError } from '../errors';
 
 export const greetingLanguages = ['en', 'ja'] as const;
 
@@ -20,7 +20,7 @@ export function resolveGreetingLanguage(
     return 'ja';
   }
 
-  throw new CommandLineError(
+  throw new UnsupportedGreetingLanguageError(
     `Unsupported language '${value}'. Expected one of: ${greetingLanguages.join(', ')}.`,
   );
 }

@@ -1,7 +1,3 @@
-import { UsageError } from 'clipanion';
-
-export { UsageError as CommandLineError };
-
 export class AppError extends Error {
   constructor(message: string) {
     super(message);
@@ -10,3 +6,4 @@ export class AppError extends Error {
 }
 
 export class GreetingValidationError extends AppError {}
+export class UnsupportedGreetingLanguageError extends AppError {}
