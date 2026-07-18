@@ -19,6 +19,9 @@ src/
     <file>.test.ts     Colocated unit tests for domain modules
 tests/
   <command>.test.ts    CLI integration tests via Bun.spawnSync
+  scripts/             Installer boundary tests
+scripts/
+  install-bun-cli.ts   Local self-update installer used by `bun run up`
 ```
 
 ## Architecture
@@ -56,7 +59,8 @@ Commands write output via `this.context.stdout.write()`. clipanion routes `Usage
 bun run fix      # Biome autofix — run before check
 bun run check    # biome lint + tsc --noEmit
 bun test         # Run all tests
-bun run build    # Compile to dist/<bin> binary
+bun run build    # Bundle to dist/bun-cli for Bun
+bun run up       # Install Bun-targeted bun-cli to BUN_CLI_INSTALL_DIR or ~/.local/bin
 ```
 
 ## Development Guidelines
