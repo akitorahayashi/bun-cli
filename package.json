@@ -11,8 +11,9 @@
   },
   "scripts": {
     "e": "bun src/main.ts",
+    "up": "bun scripts/install-bun-cli.ts",
     "prebuild": "mkdir -p dist",
-    "build": "bun build src/main.ts --compile --outfile dist/bun-cli && rm -f .*.bun-build",
+    "build": "bun build src/main.ts --target bun --outfile dist/bun-cli",
     "test": "bun test",
     "test:unit": "bun test src",
     "test:integration": "bun test tests",

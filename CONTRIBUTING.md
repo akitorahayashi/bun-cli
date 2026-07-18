@@ -5,7 +5,8 @@
 This repository owns:
 
 - `src/` — CLI entry point, commands, application logic, domain modules, and colocated unit tests
-- `tests/` — CLI integration tests
+- `tests/` — CLI integration tests and script boundary tests
+- `scripts/` — local development automation
 - `.github/workflows/` — CI automation
 
 ## Testing Policy
@@ -24,3 +25,4 @@ See [AGENTS.md](AGENTS.md) for development commands, architecture, and implement
 ## Runtime Version
 
 The Bun version is fixed by the `packageManager` field in `package.json`. Local development and CI use the same version.
+`bun run up` installs a Bun-targeted `bun-cli` command into `BUN_CLI_INSTALL_DIR` or `~/.local/bin`.
