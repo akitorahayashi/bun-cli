@@ -109,4 +109,13 @@ describe('greet command', () => {
     expect(result.stdout).toContain("Unsupported language 'fr'.");
     expect(result.stdout).toContain('bun-cli greet');
   });
+
+  test('fails cleanly for blank names', () => {
+    const result = runCli(['greet', '   ']);
+
+    expect(result.exitCode).toBe(1);
+    expect(result.stdout).toContain('Name is required.');
+    expect(result.stdout).toContain('bun-cli greet');
+    expect(result.stderr).toBe('');
+  });
 });
