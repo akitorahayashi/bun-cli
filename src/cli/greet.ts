@@ -1,6 +1,9 @@
 import { Command, Option, UsageError } from 'clipanion';
 import { greet } from '../app/greet';
-import { UnsupportedGreetingLanguageError } from '../errors';
+import {
+  GreetingValidationError,
+  UnsupportedGreetingLanguageError,
+} from '../errors';
 
 export class GreetCommand extends Command {
   static override paths = [['greet'], ['g']];
@@ -16,7 +19,10 @@ export class GreetCommand extends Command {
       const result = greet({ name: this.name, lang: this.lang });
       this.context.stdout.write(`${result.message}\n`);
     } catch (error) {
-      if (error instanceof UnsupportedGreetingLanguageError) {
+      if (
+        error instanceof UnsupportedGreetingLanguageError ||
+        error instanceof GreetingValidationError
+      ) {
         throw new UsageError(error.message);
       }
       throw error;
