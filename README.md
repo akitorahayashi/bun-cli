@@ -6,7 +6,11 @@ A Bun + TypeScript CLI template using [clipanion](https://github.com/arcanis/cli
 
 ```sh
 bun install
+bun run up
 ```
+
+`bun run up` builds a Bun-targeted single-file JavaScript bundle and installs it
+as `bun-cli` into `BUN_CLI_INSTALL_DIR` or `~/.local/bin`.
 
 ## Usage
 
