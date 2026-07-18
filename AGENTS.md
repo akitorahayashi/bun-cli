@@ -1,4 +1,8 @@
-# AGENTS.md
+# bun-cli
+
+`bun-cli` is a Bun and TypeScript CLI template built on clipanion. One command
+class per subcommand registers behind a single `Cli` entry point, with commands
+acting as thin adapters over framework-independent domain logic.
 
 ## Directory Structure
 
